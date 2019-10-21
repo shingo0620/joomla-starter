@@ -7,11 +7,11 @@ services:
       - MARIADB_DATABASE
     volumes:
       - '~/.tellustek/data/sql/${PROJECT}:/bitnami'
-  joomla:
+  web:
     build: .
     image: ${PROJECT}:${VERSION}
     ports:
-      - '${JOOMLA_PORT}:80'
+      - '${WEB_PORT}:80'
     volumes:
       - './src:/var/www/html'
     depends_on:
