@@ -16,11 +16,3 @@ services:
       - './src:/var/www/html'
     depends_on:
       - db
-  phpmyadmin:
-    image: 'bitnami/phpmyadmin'
-    ports:
-      - '80'
-    environment:
-      - PHPMYADMIN_ALLOW_ARBITRARY_SERVER=true
-    depends_on:
-      - db
