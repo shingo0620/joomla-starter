@@ -9,9 +9,6 @@ WORKDIR /var/www/html
 # Add the remaining source code files to WORKDIR
 COPY ./src .
 
-# Add composer.json to WORKDIR and install dependencies
-RUN composer install
-
 # Apache is listening on port 80
 EXPOSE 80
 
