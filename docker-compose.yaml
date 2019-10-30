@@ -9,23 +9,29 @@ services:
       - '~/.tellustek/data/sql/${PROJECT}:/bitnami'
     restart: on-failure
   php-fpm:
-    image: 'shingo0620/php:7.3-fpm'
+    image: 'shingo0620/php:${PHP_VERSION}-fpm'
     environment:
       - JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK=1
     volumes:
-    - ./src:/var/www/html
+    - ./src:/var/www/html:cached
+    - ./config/upload.ini:${PHP_INI_DIR}/conf.d/:ro
     depends_on:
       - db
     restart: on-failure
   nginx:
-    build: .
-    image: ${PROJECT}:${VERSION}
+    image: bitnami/nginx:latest
     ports:
       - '8080'
     volumes:
       - ./config/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
       - ./certs:/certs
-      - ./src:/var/www/html
+      - ./src:/var/www/html:cached
     depends_on:
       - php-fpm
     restart: on-failure
+  src:
+    build: ./src
+    image: ${PROJECT}:${VERSION}
+    volumes:
+      - './src:/var/www/html'
+    tty: true
