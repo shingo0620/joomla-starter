@@ -7,12 +7,23 @@ services:
       - MARIADB_DATABASE
     volumes:
       - '~/.tellustek/data/sql/${PROJECT}:/bitnami'
-  web:
+    restart: on-failure
+  php-fpm:
+    image: 'shingo0620/php:7.3-fpm'
+    volumes:
+    - ./src:/var/www/html
+    depends_on:
+      - db
+    restart: on-failure
+  nginx:
     build: .
     image: ${PROJECT}:${VERSION}
     ports:
-      - '80'
+      - '8080'
     volumes:
-      - './src:/var/www/html'
+      - ./config/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
+      - ./certs:/certs
+      - ./src:/var/www/html
     depends_on:
-      - db
+      - php-fpm
+    restart: on-failure
