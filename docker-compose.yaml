@@ -14,7 +14,6 @@ services:
       - JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK=1
     volumes:
     - ./src:/var/www/html:cached
-    - ./config/upload.ini:${PHP_INI_DIR}/conf.d/:ro
     depends_on:
       - db
     restart: on-failure
