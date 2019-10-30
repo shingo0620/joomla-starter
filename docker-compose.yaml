@@ -10,6 +10,8 @@ services:
     restart: on-failure
   php-fpm:
     image: 'shingo0620/php:7.3-fpm'
+    environment:
+      - JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK=1
     volumes:
     - ./src:/var/www/html
     depends_on:

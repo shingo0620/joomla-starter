@@ -1,7 +1,7 @@
 FROM bitnami/nginx:latest
 
 # Disable remote database security requirements.
-ENV JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK=1
+# ENV JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK=1
 
 # Set working directory
 WORKDIR /var/www/html
