@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
     restart: on-failure
-  nginx:
+  web:
     image: bitnami/nginx:latest
     ports:
       - '8080'
