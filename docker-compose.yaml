@@ -6,14 +6,14 @@ services:
       - MARIADB_ROOT_PASSWORD
       - MARIADB_DATABASE
     volumes:
-      - '~/.tellustek/data/sql/${PROJECT}:/bitnami'
+      - 'sql:/bitnami'
     restart: on-failure
   php-fpm:
     image: 'shingo0620/php:${PHP_VERSION}-fpm'
     environment:
       - JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK=1
     volumes:
-    - ./src:/var/www/html:cached
+    - ./src:/var/www/html
     depends_on:
       - db
     restart: on-failure
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./config/my_server_block.conf:/opt/bitnami/nginx/conf/server_blocks/my_server_block.conf:ro
       - ./certs:/certs
-      - ./src:/var/www/html:cached
+      - ./src:/var/www/html
     depends_on:
       - php-fpm
     restart: on-failure
@@ -34,3 +34,5 @@ services:
     volumes:
       - './src:/var/www/html'
     tty: true
+volumes:
+  sql:
