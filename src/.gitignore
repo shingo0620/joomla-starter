@@ -696,7 +696,6 @@
 /templates/system/*
 /templates/index.html
 /tmp/*
-/configuration.php
 /htaccess.txt
 /index.php
 /joomla.xml
