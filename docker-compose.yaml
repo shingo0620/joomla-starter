@@ -13,7 +13,7 @@ services:
     environment:
       - JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK=1
     volumes:
-      - site:/var/www/html
+      - ./src:/var/www/html
     depends_on:
       - db
     restart: on-failure
@@ -25,7 +25,7 @@ services:
     volumes:
       - ./config/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certs:/certs
-      - site:/var/www/html
+      - ./src:/var/www/html
     depends_on:
       - php-fpm
     restart: on-failure
@@ -33,4 +33,4 @@ services:
       - .env
 volumes:
   sql:
-  site:
+#   site:
