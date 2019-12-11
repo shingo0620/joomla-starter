@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: tellustek
+  name: website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project.name: tellustek-website
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        project.name: tellustek-website
+    spec:
+      volumes:
+      - name: website-volume
+        persistentVolumeClaim:
+          claimName: website-pvc
+      containers:
+      - name: php-fpm
+        image: shingo0620/php:7.3-fpm
+        env:
+        - name: JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK
+          value: "1"
+        resources: 
+          requests:
+            memory: "400Mi"
+            cpu: "100m"
+          # limits:
+          #   memory: "400Mi"
+          #   cpu: "100m"
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: website-volume
+      - name: web
+        image: asia.gcr.io/tellustek-k8s/tellustek/website
+        ports:
+        - containerPort: 80
+        env:
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: website
+                key: DB_HOST
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: website
+                key: DB_NAME
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: website
+                key: DB_USERNAME
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: website
+                key: DB_PASSWORD
+          - name: SMTP_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: website
+                key: SMTP_PASSWORD
+        lifecycle:
+          postStart:
+            exec:
+              # command: ['sh', '-c', 'cp -ru /src/. /var/www/html && chown -R 82:82 /var/www/html/*']
+              command: ['/bin/sh', '/entrypoint.sh']
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "25m"
+          # limits:
+          #   memory: "100Mi"
+          #   cpu: "25m"
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: website-volume

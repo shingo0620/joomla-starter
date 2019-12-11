@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: tellustek
+  name: website-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: "standard"
+  # accessModes:
+  # - ReadWriteMany
+  # storageClassName: "nfs-client"
+  resources:
+    requests:
+      storage: 3Gi
+status: {}

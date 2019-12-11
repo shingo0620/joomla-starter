@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: tellustek
+  name: website-pv
+spec:
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 3Gi
+  # nfs:
+  #   server: nfs-server.default.svc.cluster.local
+  #   path: "/exports"
