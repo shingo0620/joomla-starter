@@ -1,0 +1,9 @@
+.vscode/
+.git/
+k8s-manifests/
+deploy/
+
+.env
+.gitignore
+env.example
+docker-compose.yaml

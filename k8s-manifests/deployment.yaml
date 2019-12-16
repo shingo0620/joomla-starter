@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: tellustek
+  namespace: example
   name: website
 spec:
   replicas: 1
   selector:
     matchLabels:
-      project.name: tellustek-website
+      project.name: example-website
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        project.name: tellustek-website
+        project.name: example-website
     spec:
       volumes:
       - name: website-volume
@@ -39,7 +39,7 @@ spec:
         - mountPath: /var/www/html
           name: website-volume
       - name: web
-        image: asia.gcr.io/tellustek-k8s/tellustek/website
+        image: asia.gcr.io/tellustek-k8s/example/website
         ports:
         - containerPort: 80
         env:

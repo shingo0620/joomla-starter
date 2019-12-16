@@ -1,10 +1,10 @@
 apiVersion: skaffold/v1
 kind: Config
 metadata:
-  name: tellustek-website
+  name: example-website
 build:
   artifacts:
-  - image: 
+  - image: asia.gcr.io/tellustek-k8s/example/website
     context: .
     docker:
       dockerfile: Dockerfile
