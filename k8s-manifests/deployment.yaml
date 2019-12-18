@@ -33,8 +33,8 @@ spec:
             memory: "400Mi"
             cpu: "100m"
           # limits:
-          #   memory: "400Mi"
-          #   cpu: "100m"
+          #   memory: "2750Mi"
+          #   cpu: "750m"
         volumeMounts:
         - mountPath: /var/www/html
           name: website-volume
@@ -78,8 +78,8 @@ spec:
             memory: "100Mi"
             cpu: "25m"
           # limits:
-          #   memory: "100Mi"
-          #   cpu: "25m"
+          #   memory: "750Mi"
+          #   cpu: "250m"
         volumeMounts:
         - mountPath: /var/www/html
           name: website-volume
