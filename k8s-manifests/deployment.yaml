@@ -28,6 +28,9 @@ spec:
         env:
         - name: JOOMLA_INSTALLATION_DISABLE_LOCALHOST_CHECK
           value: "1"
+        - name: PHP_OPCACHE_VALIDATE_TIMESTAMPS
+          value: "0"
+        command: ['sh', '-c', 'mv ${PHP_INI_DIR}/php.ini-production $PHP_INI_DIR/php.ini && php-fpm']
         resources: 
           requests:
             memory: "400Mi"
