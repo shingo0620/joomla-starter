@@ -3,6 +3,8 @@ FROM pagespeed/nginx-pagespeed
 # 以前臺運行nginx
 # RUN echo "daemon off;" >>/etc/nginx/nginx.conf
 
+RUN apk add --no-cache rsync
+
 # Set working directory
 WORKDIR /var/www/html
 

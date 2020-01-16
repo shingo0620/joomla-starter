@@ -9,7 +9,9 @@ sed -i 's/$password = .*/$password = '"'$DB_PASSWORD';"'/g' /src/configuration.p
 sed -i 's/$smtppass = .*/$smtppass = '"'$SMTP_PASSWORD';"'/g' /src/configuration.php
 
 echo 'Copy source data into web folder'
-cp -ru /src/. /var/www/html && chown -R 82:82 /var/www/html/.
+rsync -aq --ignore-existing /src/images /var/www/html/images
+rsync -aq /src/ /var/www/html/ --exclude images
+chown -R 82:82 /var/www/html/.
 
 echo 'Remove source data...'
 rm -rf /src
