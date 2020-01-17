@@ -4,6 +4,9 @@
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 ### 安裝skaffold
 https://skaffold.dev/docs/install/
+### 安裝gcloud cli
+https://cloud.google.com/sdk/docs/quickstart-macos?hl=zh-tw
+
 ### 連結k8s環境
 `gcloud container clusters get-credentials ${CLUSTER_NAME} --zone ${ZONE_NAME} --project ${PROJECT_NAME}`<br>
 
