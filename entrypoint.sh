@@ -15,7 +15,6 @@ chown -R 82:82 /var/www/html/.
 find /var/www/html/ -type d -print0 | xargs -0 chmod 0755
 find /var/www/html/ -type f -print0 | xargs -0 chmod 0644
 
-
 echo 'Remove source data...'
 rm -rf /src
 
