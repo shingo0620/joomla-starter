@@ -12,8 +12,6 @@ echo 'Copy source data into web folder'
 rsync -aq --ignore-existing /src/images /var/www/html/images
 rsync -aq /src/ /var/www/html/ --exclude images
 chown -R 82:82 /var/www/html/.
-find /var/www/html/ -type d -print0 | xargs -0 chmod 0755
-find /var/www/html/ -type f -print0 | xargs -0 chmod 0644
 
 echo 'Remove source data...'
 rm -rf /src
