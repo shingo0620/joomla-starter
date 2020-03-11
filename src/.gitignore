@@ -352,6 +352,7 @@
 /administrator/language/en-GB/en-GB.tpl_isis.sys.ini
 /administrator/language/en-GB/en-GB.xml
 /administrator/language/en-GB/install.xml
+/administrator/language/overrides/*
 /administrator/language/index.html
 /administrator/logs/*
 /administrator/manifests/files/joomla.xml
@@ -383,6 +384,7 @@
 /administrator/modules/mod_unread/*
 /administrator/modules/mod_version/*
 /administrator/templates/hathor/*
+/administrator/templates/isis/*
 /administrator/templates/system/*
 /bin/*
 /cache/*
@@ -506,6 +508,7 @@
 /language/en-GB/en-GB.tpl_protostar.sys.ini
 /language/en-GB/en-GB.xml
 /language/en-GB/install.xml
+/language/overrides/*
 /language/index.html
 /layouts/joomla/*
 /layouts/libraries/*
